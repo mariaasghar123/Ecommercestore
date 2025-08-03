@@ -1,0 +1,55 @@
+// EggBasket.jsx
+
+const offers = [
+  {
+    label: "Only This Week",
+    heading: "Quality eggs at an affordable price",
+    desc: "Eat one every day",
+    img: "/media/images/banner-06.jpg.png", // ✅ Public folder access
+  },
+  {
+    label: "Only This Week",
+    heading: "Snacks that nourishes our mind and body",
+    desc: "Shine the morning...",
+    img: "/media/images/banner-07.jpg.png",
+  },
+  {
+    label: "Only This Week",
+    heading: "Unbeatable quality, unbeatable prices.",
+    desc: "Only this week. Don’t miss...",
+    img: "/media/images/banner-05.jpg.png",
+  },
+  {
+    label: "Only This Week",
+    heading: "Unbeatable quality, unbeatable prices.",
+    desc: "Only this week. Don’t miss...",
+    img: "/media/images/banner-06.jpg.png",
+  }
+];
+
+export default function Cards() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-11/12 md:w-3/4 mx-auto mt-5">
+      {offers.map((offer, idx) => (
+        <div
+          key={idx}
+          className="relative h-96 rounded-xl shadow overflow-hidden bg-cover bg-center"
+          style={{ backgroundImage: `url(${offer.img})` }}
+        >
+          <div className="absolute mt-5 p-3 text-white w-full">
+            <div className="text-orange-600 text-xs font-semibold mb-1">
+              {offer.label}
+            </div>
+            <div className="text-black font-bold  w-3/4 text-lg sm:text-xl leading-tight mb-1">
+              {offer.heading}
+            </div>
+            <div className="text-sm text-gray-700  mb-3">{offer.desc}</div>
+            <button className="bg-white text-black mt-5 font-semibold py-1.5 px-4 rounded-full hover:bg-gray-200 transition">
+              Shop Now →
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
