@@ -4,7 +4,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { fireDB } from '../../firebase/FirebaseConfig';
 import { useCart } from "../../context/Context";
 import Navbar2 from "../navbar2/Navbar2";
-import _ from 'lodash'; // Lodash library debounce function ke liye
+import _ from 'lodash'; 
 
 export default function Navbar() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,13 +13,11 @@ export default function Navbar() {
   const { cartItems } = useCart();
   const user = JSON.parse(localStorage.getItem('users'));
 
-  // Logout function
   const logout = () => {
     localStorage.clear();
     navigate("/login");
   }
 
-  // Live search logic with debounce for better performance
   const fetchSearchResults = async (text) => {
     if (text.trim() === '') {
       setSearchResults([]);
@@ -27,9 +25,6 @@ export default function Navbar() {
     }
 
     try {
-      // ⚠️ Note: Yeh approach abhi bhi saare documents fetch kar rahi hai.
-      // Behtar tareeqa Firestore queries istemal karna hai, jaise where('name', '>=', text)
-      // Lekin aapke current structure ke liye yeh sahi hai.
       const productsRef = collection(fireDB, 'products');
       const snapshot = await getDocs(productsRef);
       
@@ -38,20 +33,17 @@ export default function Navbar() {
         ...doc.data(),
       }));
 
-      // Check for the correct field name. Most likely 'title' not 'name'.
       const filtered = allProducts.filter((item) =>
         item.title?.toLowerCase().includes(text.toLowerCase()) || 
-        item.name?.toLowerCase().includes(text.toLowerCase()) // Fallback for 'name'
+        item.name?.toLowerCase().includes(text.toLowerCase())
       );
       
       setSearchResults(filtered);
     } catch (error) {
       console.error('Search error:', error);
-      // Agar yahan error aaye to check karen ke Firestore rules 'read' allow karte hain ya nahi.
     }
   };
 
-  // Debounced version of fetchSearchResults
   const debouncedSearch = useCallback(
     _.debounce((text) => fetchSearchResults(text), 500),
     []
@@ -69,44 +61,40 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Navbar top */}
+      {/* Top Navbar */}
       <div className="bg-white border-b border-gray-300">
-        <div className="flex flex-col md:flex-row justify-evenly items-center px-4 py-2 text-gray-800 gap-2 md:gap-0">
+        <div className="container mx-auto px-4 py-2 flex flex-wrap justify-center md:justify-between items-center text-gray-800 text-sm gap-2">
           
-          {/* Left side */}
-          <div className="flex flex-col md:flex-row gap-2 md:gap-3 items-center">
-            <p>About Us</p>
-            {/* Signup/Login links based on user state */}
+          {/* Left Side Links */}
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1">
+            <Link to="/about">About Us</Link>
             {!user && <Link to={'/register'}>Signup</Link>}
             {!user && <Link to={'/login'}>Login</Link>}
             
-            {/* User/Admin links */}
             {user?.role === "user" && <Link to={'/user-dashboard'}>User</Link>}
             {user?.role === "admin" && <Link to={'/admin/admin-dashboard'}>Admin</Link>}
             
-            {/* My Account */}
             {user && (
               <Link
                 to={user.role === 'admin' ? '/admin/admin-dashboard' : '/user-dashboard'}
-                className="text-sm font-medium text-gray-800"
+                className="font-medium"
               >
                 My Account
               </Link>
             )}
             
-            {/* Logout link */}
-            {user && <div className="cursor-pointer list-none" onClick={logout}>Logout</div>}
+            {user && <div className="cursor-pointer" onClick={logout}>Logout</div>}
             
-            <Link to="/Wishlist">Wishlist</Link>
-            <p className="hidden md:block">|</p>
-            <p className="text-center md:text-left">
-              We deliver to you every day from{" "}
+            <Link to="/wishlist">Wishlist</Link>
+            <p className="hidden lg:block text-gray-400">|</p>
+            <p className="text-center">
+              We deliver to you from{" "}
               <b className="text-orange-900">7:00 to 23:00</b>
             </p>
           </div>
 
-          {/* Right side */}
-          <div className="flex flex-col md:flex-row items-center gap-2">
+          {/* Right Side Info */}
+          <div className="flex items-center gap-4">
             <p className="flex items-center gap-1">
               English
               <img src="/media/images/763.png" alt="arrow" className="w-3 h-3" />
@@ -115,16 +103,17 @@ export default function Navbar() {
               USD
               <img src="/media/images/763.png" alt="arrow" className="w-3 h-3" />
             </p>
-            <p className="flex items-center">Order Tracking</p>
+            <p className="hidden md:flex items-center">Order Tracking</p>
           </div>
         </div>
       </div>
-      {/* Logo and Search bar */}
-      <div className="bg-white border-b border-gray-300">
-        <div className="max-w-[1280px] mx-auto px-4 py-3 flex flex-col lg:flex-row items-center justify-between gap-4">
 
-          {/* Left: Logo + Address */}
-          <div className="flex items-center gap-4 w-full lg:w-auto justify-center lg:justify-start">
+      {/* Logo, Search, and Cart */}
+      <div className="bg-white border-b border-gray-300">
+        <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-6">
+
+          {/* Logo and Address */}
+          <div className="flex items-center gap-4 w-full lg:w-auto justify-center md:justify-start">
             <Link to="/">
               <img
                 src="/media/images/Group 70@2x.png"
@@ -132,24 +121,25 @@ export default function Navbar() {
                 className="h-10 object-contain"
               />
             </Link>
-          
-            <img
-              src="/media/images/724.png"
-              alt="address"
-              className="w-8 h-8"
-            />
-            <div className="flex flex-col leading-tight text-sm">
-              <span className="text-gray-800">Deliver to</span>
-              <span className="text-black font-semibold">All</span>
+            <div className="hidden sm:flex items-center gap-2">
+              <img
+                src="/media/images/724.png"
+                alt="address"
+                className="w-7 h-7"
+              />
+              <div className="flex flex-col leading-tight text-sm">
+                <span className="text-gray-800">Deliver to</span>
+                <span className="text-black font-semibold">All</span>
+              </div>
             </div>
           </div>
 
-          {/* Center: Search Bar */}
-          <div className="w-full lg:w-[60%] relative">
+          {/* Search Bar */}
+          <div className="w-full md:w-2/4  max-w-2xl relative">
             <input
               type="text"
               placeholder="Search for products, categories and brands..."
-              className="w-full border border-gray-300 bg-gray-100 text-black rounded-md py-3 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full border border-gray-300 bg-gray-100 text-black rounded-md py-3 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-orange-500"
               value={searchTerm}
               onChange={handleSearchChange}
             />
@@ -169,7 +159,7 @@ export default function Navbar() {
             </svg>
 
             {searchTerm && searchResults.length > 0 && (
-              <div className="absolute z-50 bg-white w-full mt-1 shadow-md rounded-md max-h-60 overflow-y-auto border border-gray-200">
+              <div className="absolute z-50 bg-white w-full mt-1 shadow-lg rounded-md max-h-60 overflow-y-auto border border-gray-200">
                 {searchResults.map((item) => (
                   <Link
                     to={`/all-products/${item.id}`}
@@ -180,17 +170,17 @@ export default function Navbar() {
                     }}
                     className="block px-4 py-2 hover:bg-gray-100 text-sm text-black"
                   >
-                    {item.name || item.title} {/* Display 'name' or 'title' */}
+                    {item.name || item.title}
                   </Link>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Right: User + Wishlist + Cart */}
-          <div className="flex items-center gap-6 w-full lg:w-auto justify-center lg:justify-end">
+          {/* Right Side Icons */}
+          <div className="flex items-center gap-6 w-full lg:w-auto justify-center md:justify-end">
             {/* Sign In */}
-            <div className="flex items-center gap-2">
+            <div className="hidden sm:flex items-center gap-2">
               <img src="/media/images/727.png" alt="user icon" className="w-7 h-7" />
               <div className="flex flex-col text-sm leading-tight">
                 <span className="text-gray-800">Sign in</span>

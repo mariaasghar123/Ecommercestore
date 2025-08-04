@@ -43,7 +43,7 @@ const PopularCompanies = () => {
                 {/* Section Header */}
                 <div className="flex justify-between items-center mb-6">
                     <div className="flex flex-col">
-                        <div className="flex gap-5 items-center">
+                        <div className="flex flex-col md:flex-row gap-5 items-center">
                             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Popular Companies</h2>
                             <p className="text-gray-600 text-sm mt-1">Some of the new products arriving this week</p>
                         </div>

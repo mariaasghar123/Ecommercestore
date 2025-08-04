@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
 
         {/* Main Footer Links */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mt-8 text-xs md:text-sm">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mt-8 text-xs md:text-sm">
           {/* Need Help */}
           <div>
             <h4 className="font-semibold mb-3 text-black">Do You Need Help ?</h4>

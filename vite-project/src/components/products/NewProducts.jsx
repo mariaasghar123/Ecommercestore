@@ -34,24 +34,22 @@ const NewArrivals = () => {
   };
 
   return (
-    <section className="py-12 px-4 md:px-8">
+    <section className="py-8 md:py-12 px-4">
       <div className="container mx-auto">
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex flex-col">
-            <div className="flex gap-5 items-center">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-                New Arrivals
-              </h2>
-              <p className="text-gray-600 text-sm mt-1">
-                Don't miss this opportunity at a special discount just for this week.
-              </p>
-            </div>
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-y-4">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
+              New Arrivals
+            </h2>
+            <p className="text-gray-600 text-sm">
+              Don't miss this opportunity at a special discount just for this week.
+            </p>
           </div>
 
           {products.length >= 6 && (
             <Link
               to="/all-products"
-              className="text-purple-700 font-semibold flex items-center hover:underline"
+              className="text-purple-700 font-semibold flex items-center hover:underline whitespace-nowrap"
             >
               View All
               <svg
@@ -72,7 +70,7 @@ const NewArrivals = () => {
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
           {products.map((product, index) => (
             <div onClick={() => handleCardClick(index)} key={product.id}>
               <ProductCard
