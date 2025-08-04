@@ -10,10 +10,9 @@ export function CarouselCustomNavigation() {
     <img
       src="/media/images/banner-33.jpg.png"
       alt="Single Slide"
-      className="h-[320px] mx-auto sm:h-[500px] md:h-[400px] w-3/4 object-cover"
+      className="w-full mx-auto sm:w-full md:w-3/4 mx-auto h-[320px] sm:h-[500px] md:h-[400px] object-cover mx-auto"
     />
   );
-
   const fullCarousel = (
     <Carousel
       autoplay={true}
@@ -55,8 +54,8 @@ export function CarouselCustomNavigation() {
   return (
     <div className="relative w-full max-w-full">
       {/* Overlay Text */}
-      <div className="absolute z-30 top-[10%] md:top-[15%] left-4 md:left-[10%] lg:left-[15%] xl:left-[20%] text-left text-white w-[90%] sm:w-[70%] md:w-[50%] lg:w-[40%] space-y-3 md:space-y-4">
-        <div className="bg-gradient-to-r from-green-200 to-transparent p-1.5 md:p-3 inline-block rounded">
+      <div className="absolute z-30 top-[10%] md:top-[15%] left-6 md:left-[10%] lg:left-[15%] xl:left-[20%] text-left text-white w-[90%] sm:w-[70%] md:w-[50%] lg:w-[40%] space-y-3 md:space-y-4">
+        <div className="bg-gradient-to-r from-green-200 to-transparent p-1.5 p-3  inline-block rounded">
           <h3 className="text-xs md:text-sm font-semibold text-green-700 bg-clip-text">
             Weekend Discount
           </h3>
