@@ -1,16 +1,29 @@
 // components/UserSidebar.jsx
 import React from "react";
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const UserSidebar = ({ user }) => {
+  const navigate = useNavigate();
+
+
+  // logout function 
+    const logout = () => {
+        localStorage.clear('users');
+        navigate("/login")
+    }
   const navItems = [
     { name: "Dashboard", href: "#" },
     { name: "Orders", href: "#" },
     { name: "Downloads", href: "#" },
     { name: "Addresses", href: "#" },
-    { name: "Account Details", href: "#" },
+    { name: "Account Details", href: "/user-account-detail" },
     { name: "Wishlist", href: "#" },
     { name: "Compare", href: "#" },
     { name: "Log Out", href: "#" },
+    { name: "Become an Admin", href: "/admin" }, // Link to become admin
   ];
 
   return (
@@ -41,13 +54,24 @@ const UserSidebar = ({ user }) => {
 
       <nav className="mt-4 space-y-1">
         {navItems.map((item) => (
-          <a
-            key={item.name}
-            href={item.href}
-            className="block px-6 py-2 text-gray-700 rounded hover:bg-gray-100 transition"
-          >
-            {item.name}
-          </a>
+          item.name === "Log Out" ? (
+            <a
+              key={item.name}
+              href={item.href}
+              className="block px-6 py-2 text-gray-700 rounded hover:bg-gray-100 transition"
+              onClick={logout}
+            >
+              {item.name}
+            </a>
+          ) : (
+            <a
+              key={item.name}
+              href={item.href}
+              className="block px-6 py-2 text-gray-700 rounded hover:bg-gray-100 transition"
+            >
+              {item.name}
+            </a>
+          )
         ))}
       </nav>
     </aside>

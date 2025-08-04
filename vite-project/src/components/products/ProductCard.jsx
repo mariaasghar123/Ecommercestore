@@ -34,7 +34,7 @@ const ProductCard = ({ product, isExpanded , onClick}) => {
       <div>
         {product.discount && (
           <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
-            {product.discount}
+            {product.discount}%
           </div>
         )}
        {isExpanded && (
@@ -63,8 +63,8 @@ const ProductCard = ({ product, isExpanded , onClick}) => {
 
         <div className="text-center mb-4">
           <img
-            src={product.image}
-            alt={product.name}
+            src={product.productImageUrl}
+            alt={product.title}
             className="w-full h-auto object-cover"
           />
         </div>
@@ -98,15 +98,15 @@ const ProductCard = ({ product, isExpanded , onClick}) => {
             className="text-sm font-semibold mt-2 hover:underline cursor-pointer"
             onClick={handleViewDetails}
           >
-            {product.name}
+            {product.title}
           </h4>
           {isExpanded && (
             <p className="text-xs text-gray-500 mt-1">
-              Available: {product.available || 10} items
+              Available: {product.availableItems || 10} items
             </p>
           )}
           <div className="flex items-center mt-1">
-            <span className="text-gray-900 font-bold text-lg">
+            <span className="text-red-600 font-bold text-xl">
               ${product.price}
             </span>
             {product.oldPrice && (

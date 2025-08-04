@@ -16,11 +16,11 @@ const RelatedProducts = ({ currentId, allProducts }) => {
           >
             <div>
               <img
-                src={product.image}
-                alt={product.name}
+                src={product.productImageUrl}
+                alt={product.title}
                 className="mb-2 rounded w-full h-40 object-cover"
               />
-              <h3 className="text-md font-medium">{product.name}</h3>
+              <h3 className="text-md font-medium">{product.title}</h3>
               <p className="text-sm text-gray-600">${product.price}</p>
               {product.discount && (
                 <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">

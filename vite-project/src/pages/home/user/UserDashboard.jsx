@@ -1,19 +1,23 @@
 // pages/UserDashboard.jsx
 import React from "react";
 import UserSidebar from "./UserSidebar";
+// import { useNavigate } from 'react-router-dom';
 
+// const UserDashboard = () => {
+//   const user = {
+//     name: "Maria",
+//     email: "maria@gmail.com",
+//   };
 const UserDashboard = () => {
-  const user = {
-    name: "Maria",
-    email: "maria@gmail.com",
-  };
+    // user
+    const user = JSON.parse(localStorage.getItem('users'));
+    
 
-  const handleBecomeAdmin = () => {
-    alert("Redirecting to Admin Registration Form...");
-    // Navigate to /admin form (replace with your router logic)
-    window.location.href = "/admin";
-  };
-
+//   const handleBecomeAdmin = () => {
+//     alert("Redirecting to Admin Registration Form...");
+//     // Navigate to /admin form (replace with your router logic)
+//     window.location.href = "/admin";
+//   }; 
   return (
     <div className="flex">
       <UserSidebar user={user} />
@@ -61,14 +65,14 @@ const UserDashboard = () => {
         </div>
 
         {/* Become Admin Button */}
-        <div className="text-center">
+        {/* <div className="text-center">
           <button
             onClick={handleBecomeAdmin}
             className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full text-lg shadow-md transition"
           >
             Become an Admin
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

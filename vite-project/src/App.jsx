@@ -20,6 +20,16 @@ import Blog from "./pages/blog/Blog";
 import Wishlist from "./pages/wishlist/Wishlist";
 import UserDashboard from "./pages/home/user/UserDashboard";
 import AdminDashboardDetail from "./pages/home/admin/AdminDashboardDetail";
+import { Toaster } from "react-hot-toast";
+import { ProtectedRouteForAdmin } from "./pages/protectedroute/ProtectedRouteForAdmin";
+import { ProtectedRouteForUser } from "./pages/protectedroute/ProtectedRouteForUser";
+import AddProductPage from "./pages/home/admin/AddProductPage";
+import ProductListPage from "./pages/home/admin/ProductListPage";
+import EditProduct from "./pages/home/admin/EditProduct";
+import ViewProduct from "./pages/home/admin/ViewProduct";
+import AdminOrders from "./pages/home/admin/AdminOrders";
+import UpdateAdmin from "./pages/home/admin/AdminDashboard";
+import UserAccountDetail from "./pages/home/user/UserAccountDetail";
 export default function App() {
   
   return (
@@ -36,10 +46,44 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/user-dashboard" element={<UserDashboard />} />
+            
+            <Route path="/user-dashboard" element={
+              <ProtectedRouteForUser> <UserDashboard /></ProtectedRouteForUser>
+             } />
+              <Route path="/user-account-detail" element={
+              <ProtectedRouteForUser> <UserAccountDetail /></ProtectedRouteForUser>
+             } />
 
-            <Route path="/admin" element={<UpdateVendor />} />
-            <Route path="/admin/admin-dashboard" element={<AdminDashboardDetail />} />
+            <Route path="/admin" element={<UpdateAdmin />} />
+
+            <Route path="/admin/admin-dashboard" element={
+              <ProtectedRouteForAdmin>
+                <AdminDashboardDetail />
+              </ProtectedRouteForAdmin>
+              } />
+              <Route path="/admin/admin-dashboard/add-product" element={
+              <ProtectedRouteForAdmin>
+                <AddProductPage />
+              </ProtectedRouteForAdmin>
+              } />
+              <Route path="/admin/admin-dashboard/products" element={
+              <ProtectedRouteForAdmin>
+                <ProductListPage />
+              </ProtectedRouteForAdmin>}/>
+              <Route path="/admin/admin-dashboard/edit-product/:id" element={
+              <ProtectedRouteForAdmin>
+                <EditProduct />
+              </ProtectedRouteForAdmin>}/>
+               <Route path="/admin/admin-dashboard/view-product/:id" element={
+              <ProtectedRouteForAdmin>
+                <ViewProduct />
+              </ProtectedRouteForAdmin>}/>
+               <Route path="/admin/admin-dashboard/orders" element={
+              <ProtectedRouteForAdmin>
+                <AdminOrders />
+              </ProtectedRouteForAdmin>}/>
+                
+
 
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/blog" element={<Blog />} />
@@ -48,6 +92,7 @@ export default function App() {
             <Route path="*" element={<PageNotFound />} />
             <Route path="/*" element={<Nopage />} />
           </Routes>
+          <Toaster/>
         </Layout>
       </Router>
       </CartProvider>

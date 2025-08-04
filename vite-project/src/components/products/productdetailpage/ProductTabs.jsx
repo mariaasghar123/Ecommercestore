@@ -21,7 +21,7 @@ const ProductTabs = ({ product }) => {
       </div>
       <div className="mt-4 text-gray-700">
         {tab === "description" ? (
-          <p>This is a sample description for {product.name}.</p>
+          <p>This is a sample description for {product.description}.</p>
         ) : (
           <p>No reviews yet.</p>
         )}

@@ -6,7 +6,7 @@ import { useCart } from "../../../context/Context";
   };
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold text-gray-900">{product.name}</h1>
+      <h1 className="text-2xl font-bold text-gray-900">{product.title}</h1>
       <p className="text-xl text-green-700 font-semibold">${product.price}</p>
       <p className="text-gray-500 line-through">${product.oldPrice}</p>
       <p className="text-sm text-red-500">{product.discount} OFF</p>
