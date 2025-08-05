@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from "@material-tailwind/react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export function CarouselCustomNavigation() {
   const location = useLocation();
@@ -73,9 +73,11 @@ export function CarouselCustomNavigation() {
         </p>
 
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+          <Link to="/shop">
           <button className="bg-purple-700 text-white px-5 sm:px-8 py-2 rounded font-medium text-sm sm:text-base hover:bg-purple-800 transition">
             Shop Now
           </button>
+          </Link>
 
           <div className="flex items-center gap-2">
             <span className="text-red-600 text-lg sm:text-xl font-semibold">

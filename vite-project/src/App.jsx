@@ -30,6 +30,7 @@ import ViewProduct from "./pages/home/admin/ViewProduct";
 import AdminOrders from "./pages/home/admin/AdminOrders";
 import UpdateAdmin from "./pages/home/admin/AdminDashboard";
 import UserAccountDetail from "./pages/home/user/UserAccountDetail";
+import CategoryProducts from "./components/products/CategoryProducts";
 export default function App() {
   
   return (
@@ -46,6 +47,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/category/:categoryName" element={<CategoryProducts />} />
             
             <Route path="/user-dashboard" element={
               <ProtectedRouteForUser> <UserDashboard /></ProtectedRouteForUser>

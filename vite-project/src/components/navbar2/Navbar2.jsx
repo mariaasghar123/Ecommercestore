@@ -7,26 +7,88 @@ import { LuCupSoda } from "react-icons/lu";
 import { RiFirstAidKitLine } from "react-icons/ri";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { BsCart3 } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar2() {
   const [showDropdown, setShowDropdown] = useState(false);
-  // New state to manage the mobile menu's visibility
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  // Function to toggle the visibility of the categories dropdown
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
-  // Function to toggle the visibility of the mobile navigation menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Categories with their Firebase names
+  const categories = [
+    { 
+      icon: <FaCarrot />, 
+      label: "Fruits & Vegetables", 
+      firebaseName: "fruits-vegetables" // یہ Firebase میں exact category name ہے
+    },
+    { 
+      icon: <GiChickenOven />, 
+      label: "Meats & Seafood", 
+      firebaseName: "meats-seafood" 
+    },
+    { 
+      icon: <GiMilkCarton />, 
+      label: "Breakfast & Dairy", 
+      firebaseName: "breakfast-dairy" 
+    },
+    { 
+      icon: <GiBread />, 
+      label: "Breads & Bakery", 
+      firebaseName: "Breads & Bakery" 
+    },
+    { 
+      icon: <LuCupSoda />, 
+      label: "Beverages", 
+      firebaseName: "Beverages" 
+    },
+    { 
+      icon: <FaRegSnowflake />, 
+      label: "Frozen Foods", 
+      firebaseName: "Frozen Foods" 
+    },
+    { 
+      icon: <IoFastFoodOutline />, 
+      label: "Biscuits & Snacks", 
+      firebaseName: "Biscuits & Snacks" 
+    },
+    { 
+      icon: <MdOutlineLocalGroceryStore />, 
+      label: "Grocery & Staples", 
+      firebaseName: "Grocery & Staples" 
+    },
+    { 
+      icon: <BsCart3 />, 
+      label: "Household Needs", 
+      firebaseName: "Household Needs" 
+    },
+    { 
+      icon: <RiFirstAidKitLine />, 
+      label: "Healthcare", 
+      firebaseName: "Healthcare" 
+    },
+    { 
+      icon: <FaBaby />, 
+      label: "Baby & Pregnancy", 
+      firebaseName: "Baby & Pregnancy" 
+    },
+  ];
+
+  // Category click handler
+  const handleCategoryClick = (category) => {
+    setShowDropdown(false); 
+    navigate(`/category/${category.firebaseName}`);
+  };
+
   return (
     <nav className="w-full bg-white px-4 py-3 relative border-b border-gray-300">
-      {/* Main container with max width to center content */}
       <div className="container mx-auto flex flex-col lg:flex-row items-start md:items-center justify-between gap-4">
         
         {/* Left Section: All Categories Dropdown and Mobile Menu Button */}
@@ -42,7 +104,6 @@ export default function Navbar2() {
             <AiOutlineDown className={`text-lg transition-transform duration-300 ${showDropdown ? 'rotate-180' : 'rotate-0'}`} />
           </div>
 
-          {/* Mobile menu button, visible only on small screens */} 
           <button 
             onClick={toggleMobileMenu}
             className="md:hidden ml-4 p-2 border border-gray-300 rounded-lg hover:shadow-md transition"
@@ -56,11 +117,6 @@ export default function Navbar2() {
         </div>
 
         {/* Center Section: Navigation Links */}
-        {/*
-          The navigation links are hidden on small screens by default.
-          When the mobile menu is open, they become a vertical flex column.
-          On medium screens and up, they are always a horizontal flex row.
-        */}
         <div 
           className={`
             ${isMobileMenuOpen ? 'flex' : 'hidden'} 
@@ -82,8 +138,8 @@ export default function Navbar2() {
           {[
             { label: "Home", path: "/" },
             { label: "Shop", path: "/shop" },
-            { label: "Fruits & Vegetables", path: "/fruits" },
-            { label: "Beverages", path: "/beverages" },
+            { label: "Fruits & Vegetables", path: "/category/fruits-vegetables" },
+            { label: "Beverages", path: "/category/beverages" },
             { label: "Blog", path: "/blog" },
             { label: "Contact", path: "/contact" },
           ].map((item, idx) => (
@@ -102,7 +158,6 @@ export default function Navbar2() {
         </div>
 
         {/* Right Section: Trending Products */}
-        {/* This section is also conditionally hidden on mobile if the menu is open, to keep the layout clean */}
         <div className={`${isMobileMenuOpen ? 'hidden' : 'flex'} w-full md:w-auto flex-col xl:flex-row items-start sm:items-center gap-3 md:gap-4 md:justify-end`}>
           <div className="flex items-center text-sm font-medium text-black-800">
             <p>Trending Products</p>
@@ -117,27 +172,23 @@ export default function Navbar2() {
           </div>
         </div>
       </div>
+
+      {/* Categories Dropdown - اب یہ clickable ہے */}
       {showDropdown && (
-        <div className="absolute z-10 mt-2 w-full md:w-64 bg-white border rounded-lg shadow-lg overflow-hidden">
-          {[
-            { icon: <FaCarrot />, label: "Fruits & Vegetables" },
-            { icon: <GiChickenOven />, label: "Meats & Seafood" },
-            { icon: <GiMilkCarton />, label: "Breakfast & Dairy" },
-            { icon: <GiBread />, label: "Breads & Bakery" },
-            { icon: <LuCupSoda />, label: "Beverages" },
-            { icon: <FaRegSnowflake />, label: "Frozen Foods" },
-            { icon: <IoFastFoodOutline />, label: "Biscuits & Snacks" },
-            { icon: <MdOutlineLocalGroceryStore />, label: "Grocery & Staples" },
-            { icon: <BsCart3 />, label: "Household Needs" },
-            { icon: <RiFirstAidKitLine />, label: "Healthcare" },
-            { icon: <FaBaby />, label: "Baby & Pregnancy" },
-          ].map((item, index) => (
+        <div className="absolute z-40 mt-2 w-full md:w-64 bg-white border rounded-lg shadow-lg overflow-hidden">
+          {categories.map((item, index) => (
             <div
               key={index}
-              className="flex items-center px-4 py-3 hover:bg-gray-100 cursor-pointer gap-2 text-sm"
+              onClick={() => handleCategoryClick(item)}
+              className="flex items-center px-4 py-3 hover:bg-purple-50 hover:text-purple-700 cursor-pointer gap-2 text-sm transition-colors duration-200 group"
             >
-              <span className="text-lg">{item.icon}</span>
-              <span>{item.label}</span>
+              <span className="text-lg group-hover:scale-110 transition-transform duration-200">
+                {item.icon}
+              </span>
+              <span className="group-hover:font-medium transition-all duration-200">
+                {item.label}
+              </span>
+              <AiOutlineDown className="text-xs ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
             </div>
           ))}
         </div>

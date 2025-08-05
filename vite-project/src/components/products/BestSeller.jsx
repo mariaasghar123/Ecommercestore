@@ -90,9 +90,11 @@ const BestSeller = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
             {combinedItems.map((item, index) =>
               item.type === 'banner' ? (
+                
                 <div key={index} className="col-span-1 sm:col-span-2 md:col-span-2">
                   <PromoBanner {...item} />
                 </div>
+               
               ) : (
                 <div key={item.id} className="col-span-1">
                   <ProductCard product={item} onClick={() => handleCardClick(item)} />
