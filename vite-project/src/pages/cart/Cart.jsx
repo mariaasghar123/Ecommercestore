@@ -34,9 +34,9 @@ export default function Cart() {
       {cartItems.map((item, index) => (
         <div key={index} className="border p-4 mb-2 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <img src={item.image} alt={item.name} className="w-16 h-16 object-cover" />
+            <img src={item.productImageUrl} alt={item.title} className="w-16 h-16 object-cover" />
             <div>
-              <h4 className="font-semibold">{item.name}</h4>
+              <h4 className="font-semibold">{item.title}</h4>
               <p className="text-sm text-gray-600">
                 ${Number(item.price).toFixed(2)} x {item.quantity} = <span className="font-bold">${(item.price * item.quantity).toFixed(2)}</span>
               </p>

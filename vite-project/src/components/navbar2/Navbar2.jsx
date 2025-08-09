@@ -12,11 +12,13 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Navbar2() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
   const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
+  
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -27,7 +29,7 @@ export default function Navbar2() {
     { 
       icon: <FaCarrot />, 
       label: "Fruits & Vegetables", 
-      firebaseName: "fruits-vegetables" // یہ Firebase میں exact category name ہے
+      firebaseName: "fruits-vegetables" 
     },
     { 
       icon: <GiChickenOven />, 
@@ -94,7 +96,9 @@ export default function Navbar2() {
         {/* Left Section: All Categories Dropdown and Mobile Menu Button */}
         <div className="relative z-40 w-full md:w-auto flex items-center justify-between md:justify-start">
           <div
-            onClick={toggleDropdown}
+             onClick={toggleDropdown}
+            // onMouseEnter={() => setShowDropdown(true)}
+            // onMouseLeave={() => setShowDropdown(false)}
             className="cursor-pointer flex items-center justify-between md:justify-start gap-2 border border-gray-300 p-3 rounded-lg hover:shadow-md transition bg-gray-100 md:bg-white w-full md:w-auto"
           >
             <div className="flex items-center gap-2">
@@ -138,8 +142,8 @@ export default function Navbar2() {
           {[
             { label: "Home", path: "/" },
             { label: "Shop", path: "/shop" },
-            { label: "Fruits & Vegetables", path: "/category/fruits-vegetables" },
-            { label: "Beverages", path: "/category/beverages" },
+            { label: "Fruits & Vegetables", path: "/category/fruits & vegetables", firebaseName: "fruits & vegetables" },
+            { label: "Beverages", path: "/category/Beverages", firebaseName: "Beverages"},
             { label: "Blog", path: "/blog" },
             { label: "Contact", path: "/contact" },
           ].map((item, idx) => (
@@ -158,7 +162,7 @@ export default function Navbar2() {
         </div>
 
         {/* Right Section: Trending Products */}
-        <div className={`${isMobileMenuOpen ? 'hidden' : 'flex'} w-full md:w-auto flex-col xl:flex-row items-start sm:items-center gap-3 md:gap-4 md:justify-end`}>
+        <div className={`${isMobileMenuOpen ? 'hidden' : 'flex'} w-full md:w-auto flex lg:flex-col xl:flex-row items-start sm:items-center gap-3 md:gap-4 md:justify-end`}>
           <div className="flex items-center text-sm font-medium text-black-800">
             <p>Trending Products</p>
             <AiOutlineDown className="text-sm ml-1" />
@@ -173,7 +177,7 @@ export default function Navbar2() {
         </div>
       </div>
 
-      {/* Categories Dropdown - اب یہ clickable ہے */}
+      {/* Categories Dropdown */}
       {showDropdown && (
         <div className="absolute z-40 mt-2 w-full md:w-64 bg-white border rounded-lg shadow-lg overflow-hidden">
           {categories.map((item, index) => (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { FaRegHeart, FaHeart, FaStar, FaExpandAlt } from 'react-icons/fa';
 import { BsArrowsFullscreen } from "react-icons/bs";
@@ -7,12 +7,25 @@ import { useCart } from '../../context/Context';
 import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product, isExpanded , onClick}) => {
-  const [isFavourite, setIsFavourite] = useState(false);
+  // const [isFavourite, setIsFavourite] = useState(false);
    const { addToCart } = useCart(); // use context
   const navigate = useNavigate();
   
 
-  const toggleFavourite = () => setIsFavourite(!isFavourite);
+  // const toggleFavourite = () => setIsFavourite(!isFavourite);
+
+  const { wishlistItems, addToWishlist, removeFromWishlist } = useCart();
+
+  const isFavourite = wishlistItems.some(item => item.id === product.id);
+
+  const toggleFavourite = (e) => {
+    e.stopPropagation();
+    if (isFavourite) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  };
 
   const handleAddToCart = () => {
     addToCart(product);
@@ -51,8 +64,8 @@ const ProductCard = ({ product, isExpanded , onClick}) => {
     {/* Heart Icon */}
     <button
       onClick={(e) => {
-        e.stopPropagation();
-        toggleFavourite();
+        // e.stopPropagation();
+        toggleFavourite(e);
       }}
       className="text-purple-600 text-lg"
     >

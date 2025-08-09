@@ -6,7 +6,6 @@ import { fireDB } from '../../firebase/FirebaseConfig';
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
-  const [selectedProductIndex, setSelectedProductIndex] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -16,7 +15,7 @@ const NewArrivals = () => {
           id: doc.id,
           ...doc.data(),
         }));
-        setProducts(productsData.slice(0, 6)); // only first 6 for "New Arrivals"
+        setProducts(productsData.slice(0, 6));
       } catch (error) {
         console.error("Error fetching products: ", error);
       }
@@ -25,16 +24,8 @@ const NewArrivals = () => {
     fetchProducts();
   }, []);
 
-  const handleCardClick = (index) => {
-    if (selectedProductIndex === index) {
-      setSelectedProductIndex(null);
-    } else {
-      setSelectedProductIndex(index);
-    }
-  };
-
   return (
-    <section className="py-8 md:py-12 px-4">
+    <section className="py-8 md:py-12 px-4 overflow-hidden">
       <div className="container mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-y-4">
           <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
@@ -70,17 +61,32 @@ const NewArrivals = () => {
           )}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
-          {products.map((product, index) => (
-            <div onClick={() => handleCardClick(index)} key={product.id}>
-              <ProductCard
-                product={product}
-                isExpanded={selectedProductIndex === index}
-              />
-            </div>
-          ))}
+        {/* Moving Products */}
+        <div className="relative w-full overflow-hidden">
+          <div className="flex animate-marquee space-x-4">
+            {products.concat(products).map((product, index) => (
+              <div key={index} className="w-48 flex-shrink-0">
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Custom CSS */}
+      <style>
+        {`
+          @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            display: flex;
+            animation: marquee 15s linear infinite;
+            width: max-content;
+          }
+        `}
+      </style>
     </section>
   );
 };

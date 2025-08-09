@@ -10,6 +10,7 @@ export const useCart = () => useContext(CartContext);
 // 3. CartProvider component
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
 
   // 4. Add to Cart with Quantity Logic
   const addToCart = (product) => {
@@ -29,6 +30,8 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+
+
   // 5. Remove item from cart (optional)
   const removeFromCart = (productId) => {
     setCartItems((prevItems) =>
@@ -47,6 +50,18 @@ export const CartProvider = ({ children }) => {
   // 7. Clear entire cart (optional)
   const clearCart = () => setCartItems([]);
 
+
+  const addToWishlist = (product) => {
+    // prevent duplicates
+    if (!wishlistItems.find(item => item.id === product.id)) {
+      setWishlistItems([...wishlistItems, product]);
+    }
+  };
+
+  const removeFromWishlist = (productId) => {
+    setWishlistItems(wishlistItems.filter(item => item.id !== productId));
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -55,6 +70,10 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         updateQuantity,
         clearCart,
+        wishlistItems, 
+        addToWishlist,
+        removeFromWishlist,
+        
       }}
     >
       {children}
