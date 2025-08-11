@@ -179,7 +179,9 @@ export default function Navbar2() {
 
       {/* Categories Dropdown */}
       {showDropdown && (
-        <div className="absolute z-40 mt-2 w-full md:w-64 bg-white border rounded-lg shadow-lg overflow-hidden">
+        <div className="absolute z-40 mt-2 w-full md:w-64 bg-white border rounded-lg shadow-lg overflow-hidden"
+          onMouseLeave={() => setShowDropdown(false)}>
+            
           {categories.map((item, index) => (
             <div
               key={index}
