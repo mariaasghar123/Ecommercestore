@@ -88,12 +88,12 @@ const AdminDashboardDetail = () => {
         <h2 className="text-2xl font-bold mb-8">Admin Panel</h2>
         <ul className="space-y-4">
           <li>
-            <Link to="/admin/dashboard" className="block hover:text-yellow-300 transition" onClick={toggleSidebar}>
+            <Link to="/admin/admin-dashboard" className="block hover:text-yellow-300 transition" onClick={toggleSidebar}>
               Dashboard
             </Link>
           </li>
           <li>
-            <Link to="/admin/users" className="block hover:text-yellow-300 transition" onClick={toggleSidebar}>
+            <Link to="/admin/admin-dashboard/alluseraccounts" className="block hover:text-yellow-300 transition" onClick={toggleSidebar}>
               Users
             </Link>
           </li>
@@ -107,11 +107,11 @@ const AdminDashboardDetail = () => {
               Orders
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/admin/settings" className="block hover:text-yellow-300 transition" onClick={toggleSidebar}>
               Settings
             </Link>
-          </li>
+          </li> */}
           <li>
             <button
               onClick={() => { logout(); toggleSidebar(); }}
@@ -134,18 +134,25 @@ const AdminDashboardDetail = () => {
 
         {/* Dashboard Boxes */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Link to="/admin/admin-dashboard/alluseraccounts">
           <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-purple-500">
             <h3 className="text-gray-700 text-lg font-semibold">Total Users</h3>
             <p className="text-3xl font-bold text-purple-600 mt-2">{userCount}</p>
           </div>
+          
+          </Link>
+          <Link to="/admin/admin-dashboard/products">
           <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-pink-500">
             <h3 className="text-gray-700 text-lg font-semibold">Products</h3>
             <p className="text-3xl font-bold text-pink-600 mt-2">{productCount}</p>
           </div>
+          </Link>
+          <Link to="/admin/admin-dashboard/orders">
           <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-blue-500">
             <h3 className="text-gray-700 text-lg font-semibold">Orders</h3>
             <p className="text-3xl font-bold text-blue-600 mt-2">{orderCount}</p>
           </div>
+          </Link>
           <div className="bg-white rounded-xl p-6 shadow-md border-l-4 border-green-500">
             <h3 className="text-gray-700 text-lg font-semibold">Revenue</h3>
             <p className="text-3xl font-bold text-green-600 mt-2">${revenue.toFixed(2)}</p>

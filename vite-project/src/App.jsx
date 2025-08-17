@@ -31,6 +31,9 @@ import AdminOrders from "./pages/home/admin/AdminOrders";
 import UpdateAdmin from "./pages/home/admin/AdminDashboard";
 import UserAccountDetail from "./pages/home/user/UserAccountDetail";
 import CategoryProducts from "./components/products/CategoryProducts";
+import UserOrder from "./pages/home/user/UserOrder"
+import AccountDetail from "./pages/home/user/AccountDetail"
+import AllUserAccounts from "./pages/home/admin/AllUserAccounts"
 export default function App() {
   
   return (
@@ -55,6 +58,12 @@ export default function App() {
               <Route path="/user-account-detail" element={
               <ProtectedRouteForUser> <UserAccountDetail /></ProtectedRouteForUser>
              } />
+              <Route path="/account-detail" element={
+              <ProtectedRouteForUser> <AccountDetail /></ProtectedRouteForUser>
+             } />
+             <Route path="/userorder" element={
+              <ProtectedRouteForUser> <UserOrder /></ProtectedRouteForUser>
+             } />
 
             <Route path="/admin" element={<UpdateAdmin />} />
 
@@ -64,8 +73,13 @@ export default function App() {
               </ProtectedRouteForAdmin>
               } />
               <Route path="/admin/admin-dashboard/add-product" element={
-              <ProtectedRouteForAdmin>
+              <ProtectedRouteForAdmin>Dashboard
                 <AddProductPage />
+              </ProtectedRouteForAdmin>
+              } />
+               <Route path="/admin/admin-dashboard/alluseraccounts" element={
+              <ProtectedRouteForAdmin>
+                <AllUserAccounts />
               </ProtectedRouteForAdmin>
               } />
               <Route path="/admin/admin-dashboard/products" element={
@@ -86,11 +100,9 @@ export default function App() {
               </ProtectedRouteForAdmin>}/>
                 
 
-
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/wishlist" element={<Wishlist />}/>
-
             <Route path="*" element={<PageNotFound />} />
             <Route path="/*" element={<Nopage />} />
           </Routes>

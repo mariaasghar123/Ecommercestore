@@ -18,13 +18,10 @@ const UserSidebar = ({ user }) => {
   };
 
   const navItems = [
-    { name: "Dashboard", href: "/user/dashboard" },
-    { name: "Orders", href: "/user/orders" },
-    { name: "Downloads", href: "/user/downloads" },
-    { name: "Addresses", href: "/user/addresses" },
-    { name: "Account Details", href: "/user/account-detail" },
-    { name: "Wishlist", href: "/user/wishlist" },
-    { name: "Compare", href: "/user/compare" },
+    { name: "Dashboard", href: "/user-dashboard" },
+    { name: "Orders", href: "/userorder" },
+    { name: "Account Details", href: "/account-detail" },
+    { name: "Wishlist", href: "/wishlist" },
     { name: "Become an Admin", href: "/admin" },
   ];
 

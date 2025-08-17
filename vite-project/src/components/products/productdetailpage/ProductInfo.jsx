@@ -1,8 +1,12 @@
 import { useCart } from "../../../context/Context";
  const ProductInfo = ({ product }) => {
-    const { addToCart } = useCart();
+    const { addToCart, addToWishlist } = useCart();
      const handleAddToCart = () => {
     addToCart(product);
+  };
+
+   const handleAddToWishlist = () => {
+    addToWishlist(product);
   };
   return (
     <div className="space-y-4">
@@ -13,6 +17,12 @@ import { useCart } from "../../../context/Context";
       <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onClick={handleAddToCart}>
         Add to Cart
       </button>
+      <button
+          className="bg-pink-300 text-white px-4 py-2 ml-2 rounded hover:bg-pink-700"
+          onClick={handleAddToWishlist}
+        >
+          Add to Wishlist
+        </button>
     </div>
   );
 };
