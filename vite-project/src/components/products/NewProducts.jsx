@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import ProductCard from './ProductCard';
-import { collection, getDocs } from 'firebase/firestore';
-import { fireDB } from '../../firebase/FirebaseConfig';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import ProductCard from "./ProductCard";
+import { collection, getDocs } from "firebase/firestore";
+import { fireDB } from "../../firebase/FirebaseConfig";
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
@@ -10,7 +10,7 @@ const NewArrivals = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const querySnapshot = await getDocs(collection(fireDB, 'products'));
+        const querySnapshot = await getDocs(collection(fireDB, "products"));
         const productsData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -33,7 +33,8 @@ const NewArrivals = () => {
               New Arrivals
             </h2>
             <p className="text-gray-600 text-sm">
-              Don't miss this opportunity at a special discount just for this week.
+              Don't miss this opportunity at a special discount just for this
+              week.
             </p>
           </div>
 

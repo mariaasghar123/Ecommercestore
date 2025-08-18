@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { fireDB } from "../../../firebase/FirebaseConfig"; // ✅ apne firebaseConfig ka path sahi rakhna
-
+import { fireDB } from "../../../firebase/FirebaseConfig";
 export default function AllUserAccounts() {
   const [users, setUsers] = useState([]);
 
-  // Data fetch karna Firebase se
+  // Data fetch
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const querySnapshot = await getDocs(collection(fireDB, "user")); // "users" collection ka naam check kar lena
+        const querySnapshot = await getDocs(collection(fireDB, "user"));
         const usersData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -47,11 +46,7 @@ export default function AllUserAccounts() {
                 <td className="border p-2">{user.name || "N/A"}</td>
                 <td className="border p-2">{user.email || "N/A"}</td>
                 <td className="border p-2">{user.role || "user"}</td>
-                <td className="border p-2">
-                  {user.date
-                    
-                    || "N/A"}
-                </td>
+                <td className="border p-2">{user.date || "N/A"}</td>
               </tr>
             ))}
           </tbody>

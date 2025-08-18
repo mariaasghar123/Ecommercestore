@@ -9,14 +9,11 @@ export default function UserOrder() {
   useEffect(() => {
     const fetchOrders = async (user) => {
       try {
-        // User ka UID check karen. Agar user ya uska UID nahi hai, to ruk jayen.
         if (!user || !user.uid) {
           setLoading(false);
           return;
         }
 
-        // Firestore query: 'orders' collection se sirf current user ke orders fetch karen
-        // Yahan 'userId' field ka istemal ho raha hai, jo zyada reliable hai
         const q = query(
           collection(fireDB, "orders"),
           where("userId", "==", user.uid)
@@ -36,11 +33,11 @@ export default function UserOrder() {
         setLoading(false);
       }
     };
-    
+
     const user = auth.currentUser || JSON.parse(localStorage.getItem("user"));
     fetchOrders(user);
 
-    const unsubscribe = auth.onAuthStateChanged(firebaseUser => {
+    const unsubscribe = auth.onAuthStateChanged((firebaseUser) => {
       if (firebaseUser) {
         fetchOrders(firebaseUser);
       } else {

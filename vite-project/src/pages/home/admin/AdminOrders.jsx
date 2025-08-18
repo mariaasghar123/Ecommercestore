@@ -55,12 +55,11 @@ const AdminOrders = () => {
                 </span>
               </div>
 
-              {/* Customer Info (billingDetails ke andar se) */}
+              {/* Customer Info (billingDetails) */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                   <p>
-                    <strong>Name:</strong>{" "}
-                    {order.billingDetails?.firstName}{" "}
+                    <strong>Name:</strong> {order.billingDetails?.firstName}{" "}
                     {order.billingDetails?.lastName}
                   </p>
                   <p>

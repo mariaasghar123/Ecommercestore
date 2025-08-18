@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 import FeatureList from "../home/Features";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
@@ -49,8 +54,8 @@ export default function Contact() {
             You can ask us questions
           </h2>
           <p className="mt-2 text-sm text-gray-600 max-w-xl mx-auto">
-            Contact us for all your questions and opinions, or you can solve your
-            problems in a shorter time with our contact offices.
+            Contact us for all your questions and opinions, or you can solve
+            your problems in a shorter time with our contact offices.
           </p>
         </div>
 
@@ -60,10 +65,10 @@ export default function Contact() {
           <div>
             <h3 className="font-bold text-lg mb-2">Our Offices</h3>
             <p className="text-sm text-gray-600 mb-6">
-              On deakande mynduart mora även om slurkfart. Semidake timraheen rena.
-              Radiogen passam inte loba kävn om perade i garanterad traditionell
-              specialist til te bebel. Ev is shönde. Tun gen-visst att egligt. Diligra
-              treck dra. Ens blov dyreis.
+              On deakande mynduart mora även om slurkfart. Semidake timraheen
+              rena. Radiogen passam inte loba kävn om perade i garanterad
+              traditionell specialist til te bebel. Ev is shönde. Tun gen-visst
+              att egligt. Diligra treck dra. Ens blov dyreis.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6">

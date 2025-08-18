@@ -73,7 +73,7 @@ const AddProductPage = () => {
     const { name, value, type, checked } = e.target;
     setProduct({
       ...product,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
@@ -83,7 +83,9 @@ const AddProductPage = () => {
       <div className="bg-purple-50 px-6 py-8 md:px-8 md:py-10 border border-purple-100 rounded-xl shadow-md w-full max-w-lg">
         {/* Top Heading */}
         <div className="mb-6">
-          <h2 className="text-center text-2xl font-bold text-gray-800">Add Product</h2>
+          <h2 className="text-center text-2xl font-bold text-gray-800">
+            Add Product
+          </h2>
         </div>
 
         {/* Input Fields */}
@@ -156,7 +158,9 @@ const AddProductPage = () => {
               onChange={handleInputChange}
               className="w-full px-4 py-2 text-gray-800 bg-purple-100 border border-purple-200 rounded-md outline-none"
             >
-              <option value="" disabled>Select Product Category</option>
+              <option value="" disabled>
+                Select Product Category
+              </option>
               {categoryList.map((value, index) => (
                 <option key={index} value={value.name}>
                   {value.name}
@@ -176,7 +180,7 @@ const AddProductPage = () => {
               className="w-full bg-purple-100 border text-gray-800 border-purple-200 px-4 py-2 rounded-md outline-none placeholder-gray-400"
             />
           </div>
-          
+
           {/* Input: Description */}
           <div>
             <textarea

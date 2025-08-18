@@ -1,44 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const blogs = [
   {
     id: 1,
-    imageSrc: '/media/images/1264.png',
-    category: 'UNCATEGORIZED',
-    title: 'How grocers are approaching delivery as the market evolves',
-    date: 'November 3, 2023',
+    imageSrc: "/media/images/1264.png",
+    category: "UNCATEGORIZED",
+    title: "How grocers are approaching delivery as the market evolves",
+    date: "November 3, 2023",
     excerpt: `Bämlävakt treskaõe tníbel den mölmörisöbruk deren jyn rörinäg osk heterositik i rel ultran...`,
   },
   {
     id: 2,
-    imageSrc: '/media/images/1272.png',
-    category: 'FOOD',
-    title: 'The Friday Checkout: Food insecurity keeps retailers off balance',
-    date: 'November 3, 2023',
+    imageSrc: "/media/images/1272.png",
+    category: "FOOD",
+    title: "The Friday Checkout: Food insecurity keeps retailers off balance",
+    date: "November 3, 2023",
     excerpt: `This blog explores challenges retailers face due to food insecurity...`,
   },
   {
     id: 3,
-    imageSrc: '/media/images/1279.png',
-    category: 'AI',
-    title: 'Consumers want grocers to use AI to help them save money',
-    date: 'November 3, 2023',
+    imageSrc: "/media/images/1279.png",
+    category: "AI",
+    title: "Consumers want grocers to use AI to help them save money",
+    date: "November 3, 2023",
     excerpt: `Consumers increasingly expect AI technologies to assist them...`,
   },
   {
     id: 4,
-    imageSrc: '/media/images/1279.png',
-    category: 'RETAIL',
-    title: 'Order up! How grocers are replicating restaurant experience',
-    date: 'November 3, 2023',
+    imageSrc: "/media/images/1279.png",
+    category: "RETAIL",
+    title: "Order up! How grocers are replicating restaurant experience",
+    date: "November 3, 2023",
     excerpt: `Grocers are innovating by combining elements of restaurant dining...`,
   },
   {
     id: 5,
-    imageSrc: '/media/images/banner-21.jpg.png',
-    category: 'SUSTAINABILITY',
-    title: 'Sustainability trends driving grocery innovation in 2024',
-    date: 'November 1, 2023',
+    imageSrc: "/media/images/banner-21.jpg.png",
+    category: "SUSTAINABILITY",
+    title: "Sustainability trends driving grocery innovation in 2024",
+    date: "November 1, 2023",
     excerpt: `A look at sustainability innovations in packaging and food waste...`,
   },
 ];
@@ -53,11 +53,20 @@ function BlogCard({ blog }) {
           className="w-full h-100 object-cover transition-transform duration-300 hover:scale-105" // ✅ height increased
         />
       </a>
-      <div className="mt-3 text-xs text-purple-700 font-semibold uppercase">{blog.category}</div>
+      <div className="mt-3 text-xs text-purple-700 font-semibold uppercase">
+        {blog.category}
+      </div>
       <h2 className="mt-2 text-lg font-semibold leading-6">
-        <a href="#" className="hover:text-purple-700">{blog.title}</a>
+        <a href="#" className="hover:text-purple-700">
+          {blog.title}
+        </a>
       </h2>
-      <time dateTime={blog.date.toString()} className="block text-xs text-gray-500 mt-1">{blog.date}</time>
+      <time
+        dateTime={blog.date.toString()}
+        className="block text-xs text-gray-500 mt-1"
+      >
+        {blog.date}
+      </time>
       <p className="mt-2 text-sm text-gray-700">{blog.excerpt}</p>
       <button className="mt-3 rounded px-3 py-1 bg-purple-700 text-white text-sm font-medium hover:bg-purple-800 transition">
         Read More
@@ -73,9 +82,12 @@ function BlogSidebar() {
       <div className="mb-8">
         <h3 className="font-semibold mb-4">Blog Post List</h3>
         <ul className="space-y-4 text-sm">
-          {recentPosts.map(post => (
+          {recentPosts.map((post) => (
             <li key={post.id}>
-              <a href="#" className="flex items-center space-x-3 hover:text-purple-700">
+              <a
+                href="#"
+                className="flex items-center space-x-3 hover:text-purple-700"
+              >
                 <img
                   src={post.imageSrc}
                   alt={post.title}
@@ -83,7 +95,9 @@ function BlogSidebar() {
                 />
                 <div>
                   <h4 className="font-semibold leading-snug">{post.title}</h4>
-                  <time className="block text-xs text-gray-500">{post.date}</time>
+                  <time className="block text-xs text-gray-500">
+                    {post.date}
+                  </time>
                 </div>
               </a>
             </li>
@@ -93,10 +107,30 @@ function BlogSidebar() {
       <div>
         <h3 className="font-semibold mb-4">Social Media Widget</h3>
         <div className="space-y-2">
-          <a href="#" className="block py-2 px-3 rounded bg-blue-600 text-white hover:bg-blue-700">facebook</a>
-          <a href="#" className="block py-2 px-3 rounded bg-blue-400 text-white hover:bg-blue-500">twitter</a>
-          <a href="#" className="block py-2 px-3 rounded bg-red-600 text-white hover:bg-red-700">instagram</a>
-          <a href="#" className="block py-2 px-3 rounded bg-blue-700 text-white hover:bg-blue-800">linkedin</a>
+          <a
+            href="#"
+            className="block py-2 px-3 rounded bg-blue-600 text-white hover:bg-blue-700"
+          >
+            facebook
+          </a>
+          <a
+            href="#"
+            className="block py-2 px-3 rounded bg-blue-400 text-white hover:bg-blue-500"
+          >
+            twitter
+          </a>
+          <a
+            href="#"
+            className="block py-2 px-3 rounded bg-red-600 text-white hover:bg-red-700"
+          >
+            instagram
+          </a>
+          <a
+            href="#"
+            className="block py-2 px-3 rounded bg-blue-700 text-white hover:bg-blue-800"
+          >
+            linkedin
+          </a>
         </div>
       </div>
     </aside>
@@ -116,14 +150,14 @@ export default function Blog() {
   return (
     <div className="min-h-screen bg-white px-6 py-8 max-w-7xl mx-auto flex flex-col md:flex-row md:space-x-8">
       <main className="flex-1">
-        {paginatedBlogs.map(blog => (
+        {paginatedBlogs.map((blog) => (
           <BlogCard key={blog.id} blog={blog} />
         ))}
 
         {/* ✅ Pagination */}
         <div className="flex justify-center mt-8 space-x-2">
           <button
-            onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
             disabled={currentPage === 1}
             className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
           >
@@ -136,8 +170,8 @@ export default function Blog() {
               onClick={() => setCurrentPage(i + 1)}
               className={`px-3 py-1 rounded ${
                 currentPage === i + 1
-                  ? 'bg-purple-700 text-white'
-                  : 'bg-gray-200 hover:bg-gray-300'
+                  ? "bg-purple-700 text-white"
+                  : "bg-gray-200 hover:bg-gray-300"
               }`}
             >
               {i + 1}
@@ -145,7 +179,7 @@ export default function Blog() {
           ))}
 
           <button
-            onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
             disabled={currentPage === totalPages}
             className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
           >

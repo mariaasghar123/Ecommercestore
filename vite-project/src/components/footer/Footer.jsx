@@ -2,7 +2,6 @@ import React from "react";
 import { MdOutlineMail } from "react-icons/md";
 import { FiPhone } from "react-icons/fi";
 
-
 export default function Footer() {
   return (
     <footer className="bg-gray-100 text-gray-700 px-6 py-10 text-sm">
@@ -11,16 +10,17 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 border-b border-gray-300 pb-6">
           <div className="text-center md:text-left">
             <p className="font-semibold text-lg text-black">
-              Join our newsletter for <span className="font-bold">£10 offs</span>
+              Join our newsletter for{" "}
+              <span className="font-bold">£10 offs</span>
             </p>
             <p className="text-xs text-gray-500 mt-1">
-              Register now to get latest updates on promotions & coupons.<br />
+              Register now to get latest updates on promotions & coupons.
+              <br />
               Don&apos;t worry, we not spam!
             </p>
           </div>
           <form className="flex w-full max-w-md gap-2">
             <input
-
               type="email"
               placeholder="  Enter your email address"
               className="flex-grow border border-gray-400 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600"
@@ -38,35 +38,54 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mt-8 text-xs md:text-sm">
           {/* Need Help */}
           <div>
-            <h4 className="font-semibold mb-3 text-black">Do You Need Help ?</h4>
+            <h4 className="font-semibold mb-3 text-black">
+              Do You Need Help ?
+            </h4>
             <p className="flex items-center gap-2 mb-2">
-             <FiPhone />
+              <FiPhone />
               Monday-Friday: <b className="text-black">08am-9pm</b>
-              
             </p>
             <div className="text-black font-bold ml-5">0 800 300-353</div>
             <p className="flex mt-3 items-center gap-2">
-              <MdOutlineMail/>
+              <MdOutlineMail />
               Need help with your order? <br />
-              
             </p>
-            <a href="mailto:info@example.com" className="font-semibold hover:underline">
-                info@example.com
-              </a>
+            <a
+              href="mailto:info@example.com"
+              className="font-semibold hover:underline"
+            >
+              info@example.com
+            </a>
           </div>
 
           {/* Make Money with Us */}
           <div>
-            <h4 className="font-semibold mb-3 text-black">Make Money with Us</h4>
+            <h4 className="font-semibold mb-3 text-black">
+              Make Money with Us
+            </h4>
             <ul className="space-y-1 text-gray-600">
               <li className="hover:underline cursor-pointer">Sell on Grogin</li>
-              <li className="hover:underline cursor-pointer">Sell Your Services on Grogin</li>
-              <li className="hover:underline cursor-pointer">Sell on Grogin Business</li>
-              <li className="hover:underline cursor-pointer">Sell Your Apps on Grogin</li>
-              <li className="hover:underline cursor-pointer">Become an Affiliate</li>
-              <li className="hover:underline cursor-pointer">Advertise Your Products</li>
-              <li className="hover:underline cursor-pointer">Sell-Publish with Us</li>
-              <li className="hover:underline cursor-pointer">Become an Blowwe Vendor</li>
+              <li className="hover:underline cursor-pointer">
+                Sell Your Services on Grogin
+              </li>
+              <li className="hover:underline cursor-pointer">
+                Sell on Grogin Business
+              </li>
+              <li className="hover:underline cursor-pointer">
+                Sell Your Apps on Grogin
+              </li>
+              <li className="hover:underline cursor-pointer">
+                Become an Affiliate
+              </li>
+              <li className="hover:underline cursor-pointer">
+                Advertise Your Products
+              </li>
+              <li className="hover:underline cursor-pointer">
+                Sell-Publish with Us
+              </li>
+              <li className="hover:underline cursor-pointer">
+                Become an Blowwe Vendor
+              </li>
             </ul>
           </div>
 
@@ -74,14 +93,26 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-3 text-black">Let Us Help You</h4>
             <ul className="space-y-1 text-gray-600">
-              <li className="hover:underline cursor-pointer">Accessibility Statement</li>
+              <li className="hover:underline cursor-pointer">
+                Accessibility Statement
+              </li>
               <li className="hover:underline cursor-pointer">Your Orders</li>
-              <li className="hover:underline cursor-pointer">Returns & Replacements</li>
-              <li className="hover:underline cursor-pointer">Shipping Rates & Policies</li>
-              <li className="hover:underline cursor-pointer">Refund and Returns Policy</li>
+              <li className="hover:underline cursor-pointer">
+                Returns & Replacements
+              </li>
+              <li className="hover:underline cursor-pointer">
+                Shipping Rates & Policies
+              </li>
+              <li className="hover:underline cursor-pointer">
+                Refund and Returns Policy
+              </li>
               <li className="hover:underline cursor-pointer">Privacy Policy</li>
-              <li className="hover:underline cursor-pointer">Terms and Conditions</li>
-              <li className="hover:underline cursor-pointer">Cookie Settings</li>
+              <li className="hover:underline cursor-pointer">
+                Terms and Conditions
+              </li>
+              <li className="hover:underline cursor-pointer">
+                Cookie Settings
+              </li>
               <li className="hover:underline cursor-pointer">Help Center</li>
             </ul>
           </div>
@@ -90,13 +121,23 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-3 text-black">Get to Know Us</h4>
             <ul className="space-y-1 text-gray-600">
-              <li className="hover:underline cursor-pointer">Careers for Grogin</li>
+              <li className="hover:underline cursor-pointer">
+                Careers for Grogin
+              </li>
               <li className="hover:underline cursor-pointer">About Grogin</li>
-              <li className="hover:underline cursor-pointer">Investor Relations</li>
+              <li className="hover:underline cursor-pointer">
+                Investor Relations
+              </li>
               <li className="hover:underline cursor-pointer">Grogin Devices</li>
-              <li className="hover:underline cursor-pointer">Customer reviews</li>
-              <li className="hover:underline cursor-pointer">Social Responsibility</li>
-              <li className="hover:underline cursor-pointer">Store Locations</li>
+              <li className="hover:underline cursor-pointer">
+                Customer reviews
+              </li>
+              <li className="hover:underline cursor-pointer">
+                Social Responsibility
+              </li>
+              <li className="hover:underline cursor-pointer">
+                Store Locations
+              </li>
             </ul>
           </div>
 
@@ -111,7 +152,9 @@ export default function Footer() {
                   className="h-10"
                 />
               </a>
-              <p className="text-xs text-gray-500">Download App Get -10% Discount</p>
+              <p className="text-xs text-gray-500">
+                Download App Get -10% Discount
+              </p>
 
               <a href="#" className="inline-block">
                 <img
@@ -120,7 +163,9 @@ export default function Footer() {
                   className="h-10"
                 />
               </a>
-              <p className="text-xs text-gray-500">Download App Get -20% Discount</p>
+              <p className="text-xs text-gray-500">
+                Download App Get -20% Discount
+              </p>
             </div>
 
             {/* Social Media */}
@@ -167,11 +212,23 @@ export default function Footer() {
 
         {/* Bottom copyright & policies */}
         <div className="mt-10 flex flex-col md:flex-row justify-between text-gray-600 text-xs md:text-sm px-2">
-          <div>Copyright 2024 © Jinstore WooCommerce WordPress Theme. All right reserved. Powered by <a href="#" className="text-purple-700 hover:underline">BlackRise Themes.</a></div>
+          <div>
+            Copyright 2024 © Jinstore WooCommerce WordPress Theme. All right
+            reserved. Powered by{" "}
+            <a href="#" className="text-purple-700 hover:underline">
+              BlackRise Themes.
+            </a>
+          </div>
           <div className="flex space-x-4 mt-3 md:mt-0">
-            <a href="#" className="underline">Terms and Conditions</a>
-            <a href="#" className="underline">Privacy Policy</a>
-            <a href="#" className="underline">Order Tracking</a>
+            <a href="#" className="underline">
+              Terms and Conditions
+            </a>
+            <a href="#" className="underline">
+              Privacy Policy
+            </a>
+            <a href="#" className="underline">
+              Order Tracking
+            </a>
           </div>
         </div>
 
@@ -187,21 +244,9 @@ export default function Footer() {
             alt="Mastercard"
             className="h-6"
           />
-          <img
-            src="/media/images/paypal.png"
-            alt="PayPal"
-            className="h-6"
-          />
-          <img
-            src="/media/images/skrill.png"
-            alt="Skrill"
-            className="h-6"
-          />
-          <img
-            src="/media/images/klarna.png"
-            alt="Klarna"
-            className="h-6"
-          />
+          <img src="/media/images/paypal.png" alt="PayPal" className="h-6" />
+          <img src="/media/images/skrill.png" alt="Skrill" className="h-6" />
+          <img src="/media/images/klarna.png" alt="Klarna" className="h-6" />
         </div>
       </div>
     </footer>

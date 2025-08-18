@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { Link } from "react-router-dom";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const RelatedProducts = ({ currentId, allProducts }) => {
   const related = allProducts.filter((p) => p.id !== currentId).slice(0, 6); // 6 products
@@ -8,7 +8,7 @@ const RelatedProducts = ({ currentId, allProducts }) => {
     <div className="mt-10">
       <h2 className="text-lg font-semibold mb-4">Related Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4">
-        {related.map(product => (
+        {related.map((product) => (
           <Link
             to={`/all-products/${product.id}`}
             key={product.id}

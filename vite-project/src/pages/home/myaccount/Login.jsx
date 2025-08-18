@@ -1,70 +1,72 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, fireDB } from '../../../firebase/FirebaseConfig';
-import { collection,onSnapshot, query, where  } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, fireDB } from "../../../firebase/FirebaseConfig";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-//   const [usernameOrEmail, setUsernameOrEmail] = useState("");
-//   const [password, setPassword] = useState("");
+  //   const [usernameOrEmail, setUsernameOrEmail] = useState("");
+  //   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
   //firebase setup
 
-// navigate 
-    const navigate = useNavigate();
+  // navigate
+  const navigate = useNavigate();
 
-    // User Signup State 
-    const [userLogin, setUserLogin] = useState({
-        email: "",
-        password: ""
-    });
+  // User Signup State
+  const [userLogin, setUserLogin] = useState({
+    email: "",
+    password: "",
+  });
 
-    //login function
-    const userLoginFunction = async () => {
-        // validation 
-        if (userLogin.email === "" || userLogin.password === "") {
-            toast.error("All Fields are required")
-        }
-        try {
-            const users = await signInWithEmailAndPassword(auth, userLogin.email, userLogin.password);
-            // console.log(users.user)
-
-            try {
-                const q = query(
-                    collection(fireDB, "user"),
-                    where('uid', '==', users?.user?.uid)
-                );
-                const data = onSnapshot(q, (QuerySnapshot) => {
-                    let user;
-                    QuerySnapshot.forEach((doc) => user = doc.data());
-                    localStorage.setItem("users", JSON.stringify(user) )
-                    setUserLogin({
-                        email: "",
-                        password: ""
-                    })
-                    toast.success("Login Successfully");
-                   
-                    if(user.role === "user") {
-                        navigate('/user-dashboard');
-                    }else{
-                        navigate('/admin/admin-dashboard');
-                    }
-                });
-                return () => data;
-            } catch (error) {
-                console.log(error);
-                
-            }
-             } catch (error) {
-            console.log(error);
-            
-            toast.error("Login Failed");
-        }
-
+  //login function
+  const userLoginFunction = async () => {
+    // validation
+    if (userLogin.email === "" || userLogin.password === "") {
+      toast.error("All Fields are required");
     }
+    try {
+      const users = await signInWithEmailAndPassword(
+        auth,
+        userLogin.email,
+        userLogin.password
+      );
+      // console.log(users.user)
+
+      try {
+        const q = query(
+          collection(fireDB, "user"),
+          where("uid", "==", users?.user?.uid)
+        );
+        const data = onSnapshot(q, (QuerySnapshot) => {
+          let user;
+          QuerySnapshot.forEach((doc) => (user = doc.data()));
+          localStorage.setItem("users", JSON.stringify(user));
+          setUserLogin({
+            email: "",
+            password: "",
+          });
+          toast.success("Login Successfully");
+
+          if (user.role === "user") {
+            navigate("/user-dashboard");
+          } else {
+            navigate("/admin/admin-dashboard");
+          }
+        });
+        return () => data;
+      } catch (error) {
+        console.log(error);
+      }
+    } catch (error) {
+      console.log(error);
+
+      toast.error("Login Failed");
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -106,12 +108,12 @@ const Login = () => {
               id="usernameOrEmail"
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
               value={userLogin.email}
-                        onChange={(e) => {
-                            setUserLogin({
-                                ...userLogin,
-                                email: e.target.value
-                            })
-                        }}
+              onChange={(e) => {
+                setUserLogin({
+                  ...userLogin,
+                  email: e.target.value,
+                });
+              }}
               required
             />
           </div>
@@ -128,13 +130,13 @@ const Login = () => {
               type="password"
               id="password"
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
-               value={userLogin.password}
-                        onChange={(e) => {
-                            setUserLogin({
-                                ...userLogin,
-                                password: e.target.value
-                            })
-                        }}
+              value={userLogin.password}
+              onChange={(e) => {
+                setUserLogin({
+                  ...userLogin,
+                  password: e.target.value,
+                });
+              }}
               required
             />
           </div>
@@ -167,7 +169,7 @@ const Login = () => {
           {/* Login Button */}
           <div>
             <button
-            onClick={userLoginFunction}
+              onClick={userLoginFunction}
               type="submit"
               className="w-full py-2 px-4 rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
             >
@@ -180,10 +182,3 @@ const Login = () => {
   );
 };
 export default Login;
-
-// Dummy Link component for demonstration (replace with react-router-dom Link in your actual app)
-// const Link = ({ to, className, children }) => (
-//   <a href={to} className={className}>
-//     {children}
-//   </a>
-// );

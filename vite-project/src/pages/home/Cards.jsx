@@ -1,5 +1,3 @@
-// EggBasket.jsx
-
 import { Link } from "react-router-dom";
 
 const offers = [
@@ -26,7 +24,7 @@ const offers = [
     heading: "Unbeatable quality, unbeatable prices.",
     desc: "Only this week. Don’t miss...",
     img: "/media/images/banner-06.jpg.png",
-  }
+  },
 ];
 
 export default function Cards() {
@@ -47,9 +45,9 @@ export default function Cards() {
             </div>
             <div className="text-sm text-gray-700  mb-3">{offer.desc}</div>
             <Link to="/shop">
-            <button className="bg-white text-black mt-5 font-semibold py-1.5 px-4 rounded-full hover:bg-gray-200 transition">
-              Shop Now →
-            </button>
+              <button className="bg-white text-black mt-5 font-semibold py-1.5 px-4 rounded-full hover:bg-gray-200 transition">
+                Shop Now →
+              </button>
             </Link>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from 'react-router-dom';
-import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
+import { useNavigate, Link } from "react-router-dom";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 const UserSidebar = ({ user }) => {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const UserSidebar = ({ user }) => {
 
   // Logout function
   const logout = () => {
-    localStorage.clear('users');
+    localStorage.clear("users");
     navigate("/login");
   };
 
@@ -28,7 +28,7 @@ const UserSidebar = ({ user }) => {
   return (
     <>
       {/* Mobile Menu Button - Visible only on small screens */}
-      <button 
+      <button
         onClick={toggleSidebar}
         className="fixed top-4 left-4 z-50 p-2 text-gray-700 bg-white rounded-lg shadow-md sm:hidden"
       >
@@ -37,20 +37,20 @@ const UserSidebar = ({ user }) => {
 
       {/* Sidebar Overlay for mobile */}
       {isSidebarOpen && (
-        <div 
+        <div
           onClick={toggleSidebar}
           className="fixed inset-0 z-40 bg-black bg-opacity-50 sm:hidden"
         ></div>
       )}
 
-      <aside 
+      <aside
         className={`fixed top-0 left-0 w-64 min-h-screen bg-white border-r shadow-lg z-50
           transform transition-transform duration-300 ease-in-out
-          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
           sm:relative sm:translate-x-0 sm:shadow-sm sm:block`}
       >
         {/* Close button for mobile sidebar */}
-        <button 
+        <button
           onClick={toggleSidebar}
           className="absolute top-4 right-4 text-gray-700 sm:hidden"
         >

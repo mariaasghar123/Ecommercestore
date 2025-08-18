@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import { doc, getDoc, updateDoc, Timestamp } from 'firebase/firestore';
-import { fireDB } from '../../../firebase/FirebaseConfig';
-import toast from 'react-hot-toast';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { doc, getDoc, updateDoc, Timestamp } from "firebase/firestore";
+import { fireDB } from "../../../firebase/FirebaseConfig";
+import toast from "react-hot-toast";
 
 const categoryList = [
   { name: "Fruits & Vegetables" },
@@ -22,16 +22,15 @@ export default function EditProduct() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-
   const [product, setProduct] = useState({
-    title: '',
-    price: '',
-    oldPrice: '',
-    discount: '',
-    productImageUrl: '',
-    category: '',
-    description: '',
-    availableItems: '',
+    title: "",
+    price: "",
+    oldPrice: "",
+    discount: "",
+    productImageUrl: "",
+    category: "",
+    description: "",
+    availableItems: "",
     isOrganic: false,
     isColdSale: false,
     quantity: 1,
@@ -46,15 +45,15 @@ export default function EditProduct() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const docRef = doc(fireDB, 'products', id);
+        const docRef = doc(fireDB, "products", id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           setProduct(docSnap.data());
         } else {
-          toast.error('Product not found');
+          toast.error("Product not found");
         }
       } catch (error) {
-        console.error('Error fetching product:', error);
+        console.error("Error fetching product:", error);
       }
     };
     fetchProduct();
@@ -64,21 +63,20 @@ export default function EditProduct() {
     const { name, value, type, checked } = e.target;
     setProduct({
       ...product,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    
 
     try {
-      const docRef = doc(fireDB, 'products', id);
+      const docRef = doc(fireDB, "products", id);
       await updateDoc(docRef, product);
       toast.success("Product updated successfully");
-      navigate('/admin-dashboard'); // redirect after update
+      navigate("/admin-dashboard"); // redirect after update
     } catch (error) {
-      console.error('Error updating product:', error);
+      console.error("Error updating product:", error);
       toast.error("Update failed");
     }
   };
@@ -192,13 +190,13 @@ export default function EditProduct() {
             />
             <label>Is Cold Sale?</label>
           </div>
-            <Link to="/admin/admin-dashboard/products">
-          <button
-            type="submit"
-            className="w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600"
-          >
-            Update Product
-          </button>
+          <Link to="/admin/admin-dashboard/products">
+            <button
+              type="submit"
+              className="w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600"
+            >
+              Update Product
+            </button>
           </Link>
         </div>
       </form>

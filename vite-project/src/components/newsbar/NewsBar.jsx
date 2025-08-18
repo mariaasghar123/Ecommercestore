@@ -5,10 +5,7 @@ const messagePairs = [
     "FREE delivery & 40% Discount for next 3 orders!",
     "Place your 1st order in 🔥",
   ],
-  [
-    "New arrivals just dropped 🔥",
-    "Check out now 🛒",
-  ],
+  ["New arrivals just dropped 🔥", "Check out now 🛒"],
   [
     "Buy 2 get 1 free! Limited time offer ⏳",
     <>

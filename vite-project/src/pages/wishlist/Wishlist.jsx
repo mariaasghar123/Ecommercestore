@@ -1,8 +1,7 @@
-import React from 'react';
-import { useCart } from '../../context/Context';
-import ProductCard from '../../components/products/ProductCard';
-import { useNavigate } from 'react-router-dom';
-
+import React from "react";
+import { useCart } from "../../context/Context";
+import ProductCard from "../../components/products/ProductCard";
+import { useNavigate } from "react-router-dom";
 
 export default function Wishlist() {
   const { wishlistItems } = useCart();

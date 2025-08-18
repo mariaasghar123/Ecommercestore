@@ -145,8 +145,6 @@ function Checkout() {
               />
             </div>
           </div>
-          {/* ... Baki inputs yahan hain ... */}
-          {/* Yahan baqi inputs ko bhi `name` aur `value` se bind karen */}
           <div className="mb-4">
             <label className="block text-gray-700 mb-1">
               Company name (optional)

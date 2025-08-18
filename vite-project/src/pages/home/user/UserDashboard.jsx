@@ -1,7 +1,13 @@
 // pages/UserDashboard.jsx
 import React, { useEffect, useState } from "react";
 import UserSidebar from "./UserSidebar";
-import { collection, query, where, getDocs, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+} from "firebase/firestore";
 import { fireDB, auth } from "../../../firebase/FirebaseConfig";
 import { Link } from "react-router-dom";
 import { useCart } from "../../../context/Context";
@@ -13,7 +19,7 @@ const UserDashboard = () => {
   const { wishlistItems } = useCart();
 
   useEffect(() => {
-    const unsubscribeAuth = auth.onAuthStateChanged(firebaseUser => {
+    const unsubscribeAuth = auth.onAuthStateChanged((firebaseUser) => {
       if (firebaseUser) {
         const userObj = {
           name: firebaseUser.displayName || "Guest User",
@@ -21,9 +27,9 @@ const UserDashboard = () => {
           uid: firebaseUser.uid,
         };
         setUser(userObj);
-        
+
         fetchUserOrders(userObj.uid);
-        fetchUserMessages(userObj.email); 
+        fetchUserMessages(userObj.email);
       } else {
         setUser(null);
         setOrderCount(0);
@@ -48,7 +54,7 @@ const UserDashboard = () => {
     try {
       const q = query(
         collection(fireDB, "messages"),
-        where("email", "==", email),
+        where("email", "==", email)
       );
 
       const unsubscribeMessages = onSnapshot(q, (snapshot) => {
@@ -93,11 +99,17 @@ const UserDashboard = () => {
 
         {/* User Info Card */}
         <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-8 mb-10 border border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Profile Details</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+            Profile Details
+          </h2>
           <div className="flex flex-col sm:flex-row items-center justify-between">
             <div className="space-y-2">
-              <p className="text-gray-700"><strong>Name:</strong> {user.name}</p>
-              <p className="text-gray-700"><strong>Email:</strong> {user.email}</p>
+              <p className="text-gray-700">
+                <strong>Name:</strong> {user.name}
+              </p>
+              <p className="text-gray-700">
+                <strong>Email:</strong> {user.email}
+              </p>
             </div>
             <div className="mt-4 sm:mt-0">
               <span className="px-5 py-2 bg-orange-100 text-orange-700 rounded-full font-medium shadow-inner">
@@ -113,7 +125,9 @@ const UserDashboard = () => {
           <Link to="/userorder">
             <div className="bg-white hover:scale-105 transform transition-all duration-300 shadow-xl rounded-3xl p-6 border-l-8 border-orange-500 cursor-pointer">
               <h2 className="text-lg font-semibold text-gray-700">Orders</h2>
-              <p className="text-4xl font-bold text-orange-600 mt-2">{orderCount}</p>
+              <p className="text-4xl font-bold text-orange-600 mt-2">
+                {orderCount}
+              </p>
               <p className="text-sm text-gray-500 mt-1">Completed orders</p>
             </div>
           </Link>
@@ -122,7 +136,9 @@ const UserDashboard = () => {
           <Link to="/wishlist">
             <div className="bg-white hover:scale-105 transform transition-all duration-300 shadow-xl rounded-3xl p-6 border-l-8 border-pink-500 cursor-pointer">
               <h2 className="text-lg font-semibold text-gray-700">Wishlist</h2>
-              <p className="text-4xl font-bold text-pink-600 mt-2">{wishlistItems.length}</p>
+              <p className="text-4xl font-bold text-pink-600 mt-2">
+                {wishlistItems.length}
+              </p>
               <p className="text-sm text-gray-500 mt-1">Saved items</p>
             </div>
           </Link>
@@ -137,10 +153,14 @@ const UserDashboard = () => {
 
         {/* Messages Section */}
         <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">📩 Your Messages</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+            📩 Your Messages
+          </h2>
           <div className="h-80 overflow-y-auto pr-2">
             {messages.length === 0 ? (
-              <p className="text-gray-500 text-center py-10">No messages found.</p>
+              <p className="text-gray-500 text-center py-10">
+                No messages found.
+              </p>
             ) : (
               messages.map((msg) => (
                 <div
@@ -149,7 +169,8 @@ const UserDashboard = () => {
                 >
                   <div className="flex justify-between items-center text-sm font-medium text-gray-600 mb-2">
                     <p className="text-orange-800">
-                      <strong className="text-orange-900">Subject:</strong> {msg.subject}
+                      <strong className="text-orange-900">Subject:</strong>{" "}
+                      {msg.subject}
                     </p>
                     <p className="text-gray-500">
                       {new Date(msg.createdAt?.seconds * 1000).toLocaleString()}
@@ -157,7 +178,9 @@ const UserDashboard = () => {
                   </div>
                   <p className="text-gray-800 leading-relaxed">{msg.message}</p>
                   <div className="mt-4 pt-2 border-t border-orange-200 text-sm text-gray-600">
-                    <p><strong>From:</strong> {msg.name} ({msg.email})</p>
+                    <p>
+                      <strong>From:</strong> {msg.name} ({msg.email})
+                    </p>
                   </div>
                 </div>
               ))

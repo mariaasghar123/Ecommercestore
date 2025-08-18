@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import { BsCart4 } from "react-icons/bs";
 import { Button } from "@material-tailwind/react";
-import { Link, useNavigate } from 'react-router-dom';
-import { useCart } from '../../context/Context';
+import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "../../context/Context";
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -18,7 +18,9 @@ export default function Cart() {
     return (
       <div className="flex flex-col items-center justify-center h-80 text-center space-y-4">
         <BsCart4 size={80} className="text-gray-black" />
-        <p className="border p-5 text-red-700 font-bold text-lg">Your Cart is Currently Empty</p>
+        <p className="border p-5 text-red-700 font-bold text-lg">
+          Your Cart is Currently Empty
+        </p>
         <Link to="/">
           <Button>Return to Shop</Button>
         </Link>
@@ -32,13 +34,23 @@ export default function Cart() {
       <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
 
       {cartItems.map((item, index) => (
-        <div key={index} className="border p-4 mb-2 flex items-center justify-between">
+        <div
+          key={index}
+          className="border p-4 mb-2 flex items-center justify-between"
+        >
           <div className="flex items-center space-x-4">
-            <img src={item.productImageUrl} alt={item.title} className="w-16 h-16 object-cover" />
+            <img
+              src={item.productImageUrl}
+              alt={item.title}
+              className="w-16 h-16 object-cover"
+            />
             <div>
               <h4 className="font-semibold">{item.title}</h4>
               <p className="text-sm text-gray-600">
-                ${Number(item.price).toFixed(2)} x {item.quantity} = <span className="font-bold">${(item.price * item.quantity).toFixed(2)}</span>
+                ${Number(item.price).toFixed(2)} x {item.quantity} ={" "}
+                <span className="font-bold">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </span>
               </p>
               {/* ➕➖ Quantity Buttons */}
               <div className="flex items-center space-x-2 mt-2">
@@ -52,9 +64,7 @@ export default function Cart() {
                 </button>
                 <span>{item.quantity}</span>
                 <button
-                  onClick={() =>
-                    updateQuantity(item.id, item.quantity + 1)
-                  }
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
                   className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded"
                 >
                   +
@@ -63,7 +73,9 @@ export default function Cart() {
             </div>
           </div>
 
-          <span className="font-bold">${(item.price * item.quantity).toFixed(2)}</span>
+          <span className="font-bold">
+            ${(item.price * item.quantity).toFixed(2)}
+          </span>
         </div>
       ))}
 

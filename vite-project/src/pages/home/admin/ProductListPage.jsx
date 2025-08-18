@@ -13,9 +13,9 @@ const ProductListPage = () => {
     try {
       const productsRef = collection(fireDB, "products");
       const snapshot = await getDocs(productsRef);
-      const productData = snapshot.docs.map(doc => ({
+      const productData = snapshot.docs.map((doc) => ({
         id: doc.id,
-        ...doc.data()
+        ...doc.data(),
       }));
       setProducts(productData);
     } catch {
@@ -70,8 +70,11 @@ const ProductListPage = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map(product => (
-                <tr key={product.id} className="border-b hover:bg-gray-50 transition">
+              {products.map((product) => (
+                <tr
+                  key={product.id}
+                  className="border-b hover:bg-gray-50 transition"
+                >
                   <td className="px-4 py-3">
                     <img
                       src={product.productImageUrl}
@@ -82,19 +85,31 @@ const ProductListPage = () => {
                   <td className="px-4 py-3">{product.title}</td>
                   <td className="px-4 py-3 capitalize">{product.category}</td>
                   <td className="px-4 py-3">${product.price}</td>
-                  <td className="px-4 py-3 text-gray-500">${product.oldPrice || '-'}</td>
-                  <td className="px-4 py-3 text-green-600">{product.discount ? `${product.discount}%` : '-'}</td>
-                  <td className="px-4 py-3">{product.availableItems || '-'}</td>
-                  <td className="px-4 py-3">{product.isOrganic ? "Yes" : "No"}</td>
-                  <td className="px-4 py-3">{product.isColdSale ? "Yes" : "No"}</td>
+                  <td className="px-4 py-3 text-gray-500">
+                    ${product.oldPrice || "-"}
+                  </td>
+                  <td className="px-4 py-3 text-green-600">
+                    {product.discount ? `${product.discount}%` : "-"}
+                  </td>
+                  <td className="px-4 py-3">{product.availableItems || "-"}</td>
+                  <td className="px-4 py-3">
+                    {product.isOrganic ? "Yes" : "No"}
+                  </td>
+                  <td className="px-4 py-3">
+                    {product.isColdSale ? "Yes" : "No"}
+                  </td>
                   <td className="px-4 py-3">{product.date}</td>
                   <td className="px-4 py-3 text-right flex justify-end gap-2">
-                    <Link to={`/admin/admin-dashboard/view-product/${product.id}`}>
+                    <Link
+                      to={`/admin/admin-dashboard/view-product/${product.id}`}
+                    >
                       <button className="text-blue-600 hover:text-blue-800">
                         <FiEye />
                       </button>
                     </Link>
-                    <Link to={`/admin/admin-dashboard/edit-product/${product.id}`}>
+                    <Link
+                      to={`/admin/admin-dashboard/edit-product/${product.id}`}
+                    >
                       <button className="text-green-600 hover:text-green-800">
                         <FiEdit2 />
                       </button>

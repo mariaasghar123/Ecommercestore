@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext } from "react";
 
 // 1. Create Context
 const CartContext = createContext();
@@ -19,9 +19,7 @@ export const CartProvider = ({ children }) => {
     if (existingItem) {
       // Product already in cart -> increase quantity
       const updatedCart = cartItems.map((item) =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
       setCartItems(updatedCart);
     } else {
@@ -29,8 +27,6 @@ export const CartProvider = ({ children }) => {
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
   };
-
-
 
   // 5. Remove item from cart (optional)
   const removeFromCart = (productId) => {
@@ -50,16 +46,15 @@ export const CartProvider = ({ children }) => {
   // 7. Clear entire cart (optional)
   const clearCart = () => setCartItems([]);
 
-
   const addToWishlist = (product) => {
     // prevent duplicates
-    if (!wishlistItems.find(item => item.id === product.id)) {
+    if (!wishlistItems.find((item) => item.id === product.id)) {
       setWishlistItems([...wishlistItems, product]);
     }
   };
 
   const removeFromWishlist = (productId) => {
-    setWishlistItems(wishlistItems.filter(item => item.id !== productId));
+    setWishlistItems(wishlistItems.filter((item) => item.id !== productId));
   };
 
   return (
@@ -70,10 +65,9 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         updateQuantity,
         clearCart,
-        wishlistItems, 
+        wishlistItems,
         addToWishlist,
         removeFromWishlist,
-        
       }}
     >
       {children}

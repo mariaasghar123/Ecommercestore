@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus } from "react-icons/ai";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 
@@ -16,7 +16,7 @@ const FeaturedProducts = () => {
         const querySnapshot = await getDocs(collection(fireDB, "products"));
         const productList = querySnapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
         setProducts(productList);
       } catch (error) {
@@ -37,7 +37,9 @@ const FeaturedProducts = () => {
   };
 
   if (loading) {
-    return <div className="text-center py-10">Loading featured products...</div>;
+    return (
+      <div className="text-center py-10">Loading featured products...</div>
+    );
   }
 
   return (
